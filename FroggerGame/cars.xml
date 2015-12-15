@@ -31,7 +31,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -1282, -934.084 </vector2>
+							<vector2> -254.278, -165.113 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -51,7 +51,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 0.214639 </real>
+							<real> 1.000001 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
