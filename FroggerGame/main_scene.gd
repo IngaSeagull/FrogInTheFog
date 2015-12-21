@@ -16,6 +16,13 @@ var timeSinceLastCar = 0
 var grayCar = preload ("res://gray_car.xml")
 var grayCarCount = 0;
 var grayCarArray = []
+var blueCar2 = preload ("res://blue_car2.xml")
+var blueCar2Count = 0;
+var blueCar2Array = []
+var timeSinceLastBlueCar2 = 0
+var redCar2 = preload ("res://red_car2.xml")
+var redCar2Count = 0;
+var redCar2Array = []
 var wood = preload ("res://wood.xml")
 var woodCount = 0;
 var woodArray = []
@@ -110,7 +117,7 @@ func game(delta):
 		grayCarPos.x = grayCarPos.x - 250 * delta
 		get_node(grayCar).set_pos(grayCarPos)
 		if grayCarPos.x > bgWidth:
-			get_node(car).grayCarqueue_free()
+			get_node(grayCar).grayCarqueue_free()
 			grayCarArray.remove(grayCarId)
 		grayCarId = grayCarId + 1
 	
@@ -118,6 +125,36 @@ func game(delta):
 	if (timeSinceLastCar > 2):
 		newGrayCar()
 		timeSinceLastCar = 0
+		
+	var blueCar2Id = 0
+	for blueCar2 in blueCar2Array:
+		var blueCar2Pos = get_node(blueCar2).get_pos()
+		blueCar2Pos.x = blueCar2Pos.x + 250 * delta
+		get_node(blueCar2).set_pos(blueCar2Pos)
+		if blueCar2Pos.x < 0:
+			#get_node(blueCar2).blueCar2queue_free()
+			blueCar2Array.remove(blueCar2Id)
+		blueCar2Id = blueCar2Id + 1
+	
+	timeSinceLastBlueCar2 = timeSinceLastBlueCar2 + delta
+	if (timeSinceLastBlueCar2 > 2):
+		newBlueCar2()
+		timeSinceLastBlueCar2 = 0
+		
+	var redCar2Id = 0
+	for redCar2 in redCar2Array:
+		var redCar2Pos = get_node(redCar2).get_pos()
+		redCar2Pos.x = redCar2Pos.x + 250 * delta
+		get_node(redCar2).set_pos(redCar2Pos)
+		if redCar2Pos.x < 0:
+			#get_node(blueCar2).redCar2queue_free()
+			redCar2Array.remove(redCar2Id)
+		redCar2Id = redCar2Id + 1
+	
+	timeSinceLastBlueCar2 = timeSinceLastBlueCar2 + delta
+	if (timeSinceLastBlueCar2 > 2):
+		newRedCar2()
+		timeSinceLastBlueCar2 = 0
 		
 	var woodId = 0
 	for wood in woodArray:
@@ -162,8 +199,89 @@ func game(delta):
 			print("game over")
 			gameRunning = false
 			
+	var redCarId = 0
+	for redCar in carArray:
+		var redCarPos = get_node(redCar).get_pos()
+		var frogPos = get_node("frog").get_pos()
+		if (((frogPos.x - frogWidth/2  >= redCarPos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= redCarPos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= redCarPos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= redCarPos.y + carHeight/2)) || 
 		
-
+		((frogPos.x + frogWidth/2  >= redCarPos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= redCarPos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= redCarPos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= redCarPos.y + carHeight/2)) ||
+		
+		((frogPos.x - frogWidth/2  >= redCarPos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= redCarPos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= redCarPos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= redCarPos.y + carHeight/2)) ||
+		
+		((frogPos.x + frogWidth/2  >= redCarPos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= redCarPos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= redCarPos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= redCarPos.y + carHeight/2))
+		):
+			print("game over")
+			gameRunning = false
+			
+	var redCar2Id = 0
+	for redCar2 in redCar2Array:
+		var redCar2Pos = get_node(redCar2).get_pos()
+		var frogPos = get_node("frog").get_pos()
+		if (((frogPos.x - frogWidth/2  >= redCar2Pos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= redCar2Pos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= redCar2Pos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= redCar2Pos.y + carHeight/2)) || 
+		
+		((frogPos.x + frogWidth/2  >= redCar2Pos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= redCar2Pos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= redCar2Pos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= redCar2Pos.y + carHeight/2)) ||
+		
+		((frogPos.x - frogWidth/2  >= redCar2Pos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= redCar2Pos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= redCar2Pos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= redCar2Pos.y + carHeight/2)) ||
+		
+		((frogPos.x + frogWidth/2  >= redCar2Pos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= redCar2Pos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= redCar2Pos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= redCar2Pos.y + carHeight/2))
+		):
+			print("game over")
+			gameRunning = false
+			
+	var blueCar2Id = 0
+	for blueCar2 in blueCar2Array:
+		var blueCar2Pos = get_node(blueCar2).get_pos()
+		var frogPos = get_node("frog").get_pos()
+		if (((frogPos.x - frogWidth/2  >= blueCar2Pos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= blueCar2Pos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= blueCar2Pos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= blueCar2Pos.y + carHeight/2)) || 
+		
+		((frogPos.x + frogWidth/2  >= blueCar2Pos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= blueCar2Pos.x + carWidth/2) &&
+		(frogPos.y - frogHeight/2 + 2 >= blueCar2Pos.y - carHeight/2 
+		&& frogPos.y - frogHeight/2 + 2 <= blueCar2Pos.y + carHeight/2)) ||
+		
+		((frogPos.x - frogWidth/2  >= blueCar2Pos.x - carWidth/2 
+		&& frogPos.x - frogWidth/2 <= blueCar2Pos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= blueCar2Pos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= blueCar2Pos.y + carHeight/2)) ||
+		
+		((frogPos.x + frogWidth/2  >= blueCar2Pos.x - carWidth/2 
+		&& frogPos.x + frogWidth/2 <= blueCar2Pos.x + carWidth/2) &&
+		(frogPos.y + frogHeight/2 - 2 >= blueCar2Pos.y - carHeight/2 
+		&& frogPos.y + frogHeight/2 - 2 <= blueCar2Pos.y + carHeight/2))
+		):
+			print("game over")
+			gameRunning = false
+			
+			
+			
 func newCar():
 	carCount = carCount + 1
 	print("car")
@@ -204,18 +322,31 @@ func newWood():
 	woodArray.push_back("wood"+ str(woodCount))
 	print(woodArray)
 	
-#func newFireTruck():
-#	fireTruckCount = fireTruckCount + 1
-#	print("fireTruck")
-#	var fireTruck_instance = fireTruck.instance()
-#	car_instance.set_name("fireTruck" + str(fireTruckCount))
-#	add_child(fireTruck_instance)
-#	var fireTruckPos = get_node("fireTruck"+ str(fireTruckCount)).get_pos()
-#	fireTruckPos.y = 470
-#	fireTruckPos.x = 1282
-#	get_node("fireTruck"+ str(fireTruckCount)).set_pos(fireTruckPos)
-#	fireTruckArray.push_back("fireTruck"+ str(fireTruckCount))
-#	print(fireTruckArray)
-
+func newBlueCar2():
+	blueCar2Count= blueCar2Count + 1
+	print("blueCar2")
+	var blueCar2_instance = blueCar2.instance()
+	blueCar2_instance.set_name("blueCar2" + str(blueCar2Count))
+	add_child(blueCar2_instance)
+	var blueCar2Pos = get_node("blueCar2"+ str(blueCar2Count)).get_pos()
+	blueCar2Pos.y = 450 + carHeight/2
+	blueCar2Pos.x = 0
+	get_node("blueCar2"+ str(blueCar2Count)).set_pos(blueCar2Pos)
+	blueCar2Array.push_back("blueCar2"+ str(blueCar2Count))
+	print(blueCar2Array)
+	
+func newRedCar2():
+	redCar2Count= redCar2Count + 1
+	print("redCar2")
+	var redCar2_instance = redCar2.instance()
+	redCar2_instance.set_name("redCar2" + str(redCar2Count))
+	add_child(redCar2_instance)
+	var redCar2Pos = get_node("redCar2"+ str(redCar2Count)).get_pos()
+	redCar2Pos.y = 500 + carHeight/2
+	redCar2Pos.x = 0
+	get_node("redCar2"+ str(redCar2Count)).set_pos(redCar2Pos)
+	redCar2Array.push_back("redCar2"+ str(redCar2Count))
+	print(redCar2Array)
+	
 func _on_jumpdelay_timeout():
 	canJump = true
