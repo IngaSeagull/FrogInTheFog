@@ -6,6 +6,8 @@ var bgWidth = 750
 var bgHeigh = 650
 var frogWidth = 50
 var frogHeight = 50
+var woodWidth = 150
+var woodHeight = 50
 var jump = 400
 var car = preload ("res://cars.xml")
 var carWidth = 100
@@ -280,7 +282,33 @@ func game(delta):
 			print("game over")
 			gameRunning = false
 			
-			
+	var woodId = 0
+	for wood in woodArray:
+		var woodPos = get_node(wood).get_pos()
+		var frogPos = get_node("frog").get_pos()
+		if (((frogPos.x - frogWidth/2  >= woodPos.x - woodWidth/2 
+		&& frogPos.x - frogWidth/2 <= woodPos.x + woodWidth/2) &&
+		(frogPos.y - frogHeight/2 + 5 >= woodPos.y - woodHeight/2 
+		&& frogPos.y - frogHeight/2 + 5 <= woodPos.y + woodHeight/2)) || 
+		
+		((frogPos.x + frogWidth/2  >= woodPos.x - woodWidth/2 
+		&& frogPos.x + frogWidth/2 <= woodPos.x + woodWidth/2) &&
+		(frogPos.y - frogHeight/2 + 5 >= woodPos.y - woodHeight/2 
+		&& frogPos.y - frogHeight/2 + 5 <= woodPos.y + woodHeight/2)) ||
+		
+		((frogPos.x - frogWidth/2  >= woodPos.x - woodWidth/2 
+		&& frogPos.x - frogWidth/2 <= woodPos.x + woodWidth/2) &&
+		(frogPos.y + frogHeight/2 - 5 >= woodPos.y - woodHeight/2 
+		&& frogPos.y + frogHeight/2 - 5 <= woodPos.y + woodHeight/2)) ||
+		
+		((frogPos.x + frogWidth/2  >= woodPos.x - woodWidth/2 
+		&& frogPos.x + frogWidth/2 <= woodPos.x + woodWidth/2) &&
+		(frogPos.y + frogHeight/2 - 5 >= woodPos.y - woodHeight/2 
+		&& frogPos.y + frogHeight/2 - 5 <= woodPos.y + woodHeight/2))
+		):
+			print("frog on the wood")
+			frogPos.x = woodPos.x
+			get_node("frog").set_pos(frogPos)
 			
 func newCar():
 	carCount = carCount + 1
@@ -316,7 +344,7 @@ func newWood():
 	add_child(wood_instance)
 	move_child(wood_instance, 1)
 	var woodPos = get_node("wood"+ str(woodCount)).get_pos()
-	woodPos.y = 200
+	woodPos.y = 250 + 25
 	woodPos.x = bgWidth
 	get_node("wood"+ str(woodCount)).set_pos(woodPos)
 	woodArray.push_back("wood"+ str(woodCount))
