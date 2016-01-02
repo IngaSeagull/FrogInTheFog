@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="3" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://images/wood.png" type="Texture" index="0"></ext_resource>
-	<ext_resource path="res://wood.gd" type="Script" index="1"></ext_resource>
+	<ext_resource path="res://images/bigWood.png" type="Texture" index="0"></ext_resource>
+	<ext_resource path="res://bigWood.gd" type="Script" index="1"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -10,7 +10,7 @@
 			<int_array  len="0"> 				 </int_array>
 			<string> "names" </string>
 			<string_array  len="5">
-				<string> "wood" </string>
+				<string> "bigWood" </string>
 				<string> "Sprite" </string>
 				<string> "texture" </string>
 				<string> "script/script" </string>
@@ -32,9 +32,9 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -782, -682 </vector2>
+							<vector2> -301.216, -39.0693 </vector2>
 							<string> "snap_grid" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "snap_offset" </string>
 							<vector2> 0, 0 </vector2>
 							<string> "snap_pixel" </string>
@@ -48,11 +48,11 @@
 							<string> "snap_rotation_step" </string>
 							<real> 0.261799 </real>
 							<string> "snap_show_grid" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "snap_step" </string>
-							<vector2> 10, 10 </vector2>
+							<vector2> 50, 50 </vector2>
 							<string> "zoom" </string>
-							<real> 0.214639 </real>
+							<real> 0.66342 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
